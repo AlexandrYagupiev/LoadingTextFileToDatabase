@@ -50,11 +50,11 @@ namespace LoadingTextFileToDatabase
             try
             {
                 connection.Open();
-                string query = "DECLARE @Mentions TABLE (Word NVARCHAR(MAX),Count int)" +
-                    "INSERT INTO @Mentions SELECT [Name], COUNT(*) FROM dbo.[BriefOfInformation] GROUP BY [Name]" +
-                    "INSERT INTO @Mentions SELECT [Phone], COUNT(*) FROM dbo.[BriefOfInformation] GROUP BY [Phone]" +
+                string query = "DECLARE @Mentions TABLE (Word NVARCHAR(MAX),Count int) " +
+                    "INSERT INTO @Mentions SELECT [Name], COUNT(*) FROM dbo.[BriefOfInformation] GROUP BY [Name] " +
+                    "INSERT INTO @Mentions SELECT [Phone], COUNT(*) FROM dbo.[BriefOfInformation] GROUP BY [Phone] " +
                     "INSERT INTO @Mentions SELECT [PlaceWork], COUNT(*) FROM dbo.[BriefOfInformation] GROUP BY [PlaceWork] " +
-                    "DELETE dbo.[NumberOfMentions]" +
+                    "DELETE dbo.[NumberOfMentions] " +
                     "INSERT INTO dbo.[NumberOfMentions] select * from @Mentions";               
                 SqlCommand command = new SqlCommand(query, connection);               
                 command.ExecuteNonQuery();
